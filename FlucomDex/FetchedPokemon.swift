@@ -34,6 +34,23 @@ struct FetchedPokemon: Decodable {
 //        case specialDefense
         case sprites
         case stats
+        
+        enum TypeDictionaryKeys: CodingKey {
+            case type
+            
+            enum TypeKeys: CodingKey {
+                case name
+            }
+        }
+        
+        enum StatDictionaryKeys: CodingKey {
+           case baseStat
+        }
+        
+        enum SpriteKeys: String, CodingKey {
+            case sprite = "frontDefault"
+            case shiny = "frontShiny"
+        }
     }
     
     init(from decoder: any Decoder) throws {
