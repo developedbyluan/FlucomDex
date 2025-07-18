@@ -24,14 +24,16 @@ struct FetchedPokemon: Decodable {
         case id
         case name
         case types
-        case sprite
-        case shiny
-        case attack
-        case defense
-        case hp
-        case speed
-        case specialAttack
-        case specialDefense
+//        case sprite
+//        case shiny
+//        case attack
+//        case defense
+//        case hp
+//        case speed
+//        case specialAttack
+//        case specialDefense
+        case sprites
+        case stats
     }
     
     init(from decoder: any Decoder) throws {
