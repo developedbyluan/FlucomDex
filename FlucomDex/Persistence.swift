@@ -8,8 +8,12 @@
 import CoreData
 
 struct PersistenceController {
+    // the thing that controls my database
+    // static just means shared, only one of it, no new one in other instances
+    // this is the source of truth
     static let shared = PersistenceController()
 
+    // the thing that controls our sample preview database
     @MainActor
     static let preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
@@ -29,8 +33,10 @@ struct PersistenceController {
         return result
     }()
 
+    // The thing that holds the stuff (the database)
     let container: NSPersistentContainer
 
+    // Run automatically when a PersistenceController instance initialized
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "FlucomDex")
         if inMemory {
