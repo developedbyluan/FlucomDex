@@ -24,17 +24,9 @@ struct FetchedPokemon: Decodable {
         case id
         case name
         case types
-        //        case sprite
-        //        case shiny
-        //        case attack
-        //        case defense
-        //        case hp
-        //        case speed
-        //        case specialAttack
-        //        case specialDefense
-        case sprites
         case stats
-        
+        case sprites
+
         enum TypeDictionaryKeys: CodingKey {
             case type
             
@@ -69,13 +61,24 @@ struct FetchedPokemon: Decodable {
         }
         types = decodedTypes
         
-        sprite = try container.decode(URL.self, forKey: .sprite)
-        shiny = try container.decode(URL.self, forKey: .shiny)
-        attack = try container.decode(Int16.self, forKey: .attack)
-        defense = try container.decode(Int16.self, forKey: .defense)
-        hp = try container.decode(Int16.self, forKey: .hp)
-        speed = try container.decode(Int16.self, forKey: .speed)
-        specialAttack = try container.decode(Int16.self, forKey: .specialAttack)
-        specialDefense = try container.decode(Int16.self, forKey: .specialDefense)
+        // stats
+        var decodedStats: [Int16] = []
+        var statsContainer = try container.nestedUnkeyedContainer(forKey: .stats)
+        while !statsContainer.isAtEnd {
+            let statsDictionaryContainer = try statsContainer.nestedContainer(keyedBy: CodingKeys.StatDictionaryKeys.self)
+            let stat = try statsDictionaryContainer.decode(Int16.self, forKey: .baseStat)
+            decodedStats.append(stat)
+        }
+        
+        hp = decodedStats[0]
+        attack = decodedStats[1]
+        defense = decodedStats[2]
+        specialAttack = decodedStats[3]
+        specialDefense = decodedStats[4]
+        speed = decodedStats[5]
+        
+        
+//        sprite = try container.decode(URL.self, forKey: .sprite)
+//        shiny = try container.decode(URL.self, forKey: .shiny)
     }
 }
