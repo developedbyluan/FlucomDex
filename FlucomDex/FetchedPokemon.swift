@@ -24,14 +24,14 @@ struct FetchedPokemon: Decodable {
         case id
         case name
         case types
-//        case sprite
-//        case shiny
-//        case attack
-//        case defense
-//        case hp
-//        case speed
-//        case specialAttack
-//        case specialDefense
+        //        case sprite
+        //        case shiny
+        //        case attack
+        //        case defense
+        //        case hp
+        //        case speed
+        //        case specialAttack
+        //        case specialDefense
         case sprites
         case stats
         
@@ -44,7 +44,7 @@ struct FetchedPokemon: Decodable {
         }
         
         enum StatDictionaryKeys: CodingKey {
-           case baseStat
+            case baseStat
         }
         
         enum SpriteKeys: String, CodingKey {
@@ -55,16 +55,16 @@ struct FetchedPokemon: Decodable {
     
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(Int16.self, forKey: .id)
-        self.name = try container.decode(String.self, forKey: .name)
-        self.types = try container.decode([String].self, forKey: .types)
-        self.sprite = try container.decode(URL.self, forKey: .sprite)
-        self.shiny = try container.decode(URL.self, forKey: .shiny)
-        self.attack = try container.decode(Int16.self, forKey: .attack)
-        self.defense = try container.decode(Int16.self, forKey: .defense)
-        self.hp = try container.decode(Int16.self, forKey: .hp)
-        self.speed = try container.decode(Int16.self, forKey: .speed)
-        self.specialAttack = try container.decode(Int16.self, forKey: .specialAttack)
-        self.specialDefense = try container.decode(Int16.self, forKey: .specialDefense)
+        id = try container.decode(Int16.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        types = try container.decode([String].self, forKey: .types)
+        sprite = try container.decode(URL.self, forKey: .sprite)
+        shiny = try container.decode(URL.self, forKey: .shiny)
+        attack = try container.decode(Int16.self, forKey: .attack)
+        defense = try container.decode(Int16.self, forKey: .defense)
+        hp = try container.decode(Int16.self, forKey: .hp)
+        speed = try container.decode(Int16.self, forKey: .speed)
+        specialAttack = try container.decode(Int16.self, forKey: .specialAttack)
+        specialDefense = try container.decode(Int16.self, forKey: .specialDefense)
     }
 }
