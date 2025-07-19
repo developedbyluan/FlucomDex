@@ -12,6 +12,8 @@ struct PokemonDetail: View {
     
     @EnvironmentObject private var pokemon: Pokemon
     
+    @State private var showShiny: Bool = false
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
