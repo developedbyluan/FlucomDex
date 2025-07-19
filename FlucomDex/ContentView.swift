@@ -17,6 +17,7 @@ struct ContentView: View {
     ) private var pokedex
     
     @State private var searchText: String = ""
+    @State private var filteredByFavorites: Bool = false
 
     let fetcher = FetchService()
     
@@ -29,6 +30,9 @@ struct ContentView: View {
         }
         
         // Filter by favorite predicate
+        if filteredByFavorites {
+            predicates.append(NSPredicate(format: "favorite == %d", true))
+        }
         
         // Combine predicates
         return NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
@@ -74,6 +78,9 @@ struct ContentView: View {
             .searchable(text: $searchText, prompt: "Find a Pokemon")
             .autocorrectionDisabled()
             .onChange(of: searchText) {
+                pokedex.nsPredicate = dynamicPredicate
+            }
+            .onChange(of: filteredByFavorites) {
                 pokedex.nsPredicate = dynamicPredicate
             }
             .navigationDestination(for: Pokemon.self) { pokemon in
