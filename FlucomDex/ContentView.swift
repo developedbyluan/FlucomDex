@@ -20,6 +20,19 @@ struct ContentView: View {
 
     let fetcher = FetchService()
     
+    private var dynamicPredicate: NSPredicate {
+        var predicates: [NSPredicate] = []
+        
+        // Search predicate
+        if !searchText.isEmpty {
+            predicates.append(NSPredicate(format: "name contains[c] %@", searchText))
+        }
+        
+        // Filter by favorite predicate
+        
+        // Combine predicates
+        return NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+    }
     
     var body: some View {
         NavigationStack {
