@@ -73,6 +73,9 @@ struct ContentView: View {
             .navigationTitle("Pokedex")
             .searchable(text: $searchText, prompt: "Find a Pokemon")
             .autocorrectionDisabled()
+            .onChange(of: searchText) {
+                pokedex.nsPredicate = dynamicPredicate
+            }
             .navigationDestination(for: Pokemon.self) { pokemon in
                 Text(pokemon.name ?? "No name")
             }
