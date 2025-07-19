@@ -32,7 +32,25 @@ struct ContentView: View {
                             ProgressView()
                         }
                         .frame(width: 100, height: 100)
-                        .border(.black, width: 7)
+                        
+                        VStack(alignment: .leading) {
+                            Text(pokemon.name!.capitalized)
+                                .fontWeight(.bold)
+                            
+                            HStack {
+                                ForEach(pokemon.types!, id: \.self) { type in
+                                    Text(type.capitalized)
+                                        .font(.subheadline)
+                                        .fontWeight(.semibold)
+                                        .foregroundStyle(.black)
+                                        .padding(.horizontal, 13)
+                                        .padding(.vertical, 5)
+                                        .background(Color(type.capitalized))
+                                        .clipShape(.capsule)
+                                    
+                                }
+                            }
+                        }
                     }
                 }
             }
