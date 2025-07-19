@@ -88,7 +88,12 @@ struct ContentView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+                    Button {
+                            filteredByFavorites.toggle()
+                    } label: {
+                        Label("Filter by Favorites", systemImage: filteredByFavorites ? "star.fill" : "star")
+                    }
+                    .tint(.yellow)
                 }
                 ToolbarItem {
                     Button("Add Item", systemImage: "plus") {
