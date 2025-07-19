@@ -22,12 +22,13 @@ struct ContentView: View {
         NavigationStack {
             List {
                 ForEach(pokedex) { pokemon in
-                    NavigationLink {
-                        Text(pokemon.name ?? "No name")
-                    } label: {
+                    NavigationLink(value: pokemon) {
                         Text(pokemon.name ?? "No name")
                     }
                 }
+            }
+            .navigationDestination(for: Pokemon.self) { pokemon in
+                Text(pokemon.name ?? "No name")
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
