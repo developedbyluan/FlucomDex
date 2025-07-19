@@ -54,42 +54,57 @@ struct ContentView: View {
         } else {
             NavigationStack {
                 List {
-                    ForEach(pokedex) { pokemon in
-                        NavigationLink(value: pokemon) {
-                            AsyncImage(url: pokemon.sprite) { image in
-                                image
-                                    .resizable()
-                                    .scaledToFit()
-                                
-                            } placeholder: {
-                                ProgressView()
-                            }
-                            .frame(width: 100, height: 100)
-                            
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Text(pokemon.name!.capitalized)
-                                        .fontWeight(.bold)
+                    Section {
+                        ForEach(pokedex) { pokemon in
+                            NavigationLink(value: pokemon) {
+                                AsyncImage(url: pokemon.sprite) { image in
+                                    image
+                                        .resizable()
+                                        .scaledToFit()
                                     
-                                    if pokemon.favorite {
-                                        Image(systemName: "star.fill")
-                                            .foregroundStyle(.yellow)
-                                    }
+                                } placeholder: {
+                                    ProgressView()
                                 }
+                                .frame(width: 100, height: 100)
                                 
-                                HStack {
-                                    ForEach(pokemon.types!, id: \.self) { type in
-                                        Text(type.capitalized)
-                                            .font(.subheadline)
-                                            .fontWeight(.semibold)
-                                            .foregroundStyle(.black)
-                                            .padding(.horizontal, 13)
-                                            .padding(.vertical, 5)
-                                            .background(Color(type.capitalized))
-                                            .clipShape(.capsule)
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        Text(pokemon.name!.capitalized)
+                                            .fontWeight(.bold)
                                         
+                                        if pokemon.favorite {
+                                            Image(systemName: "star.fill")
+                                                .foregroundStyle(.yellow)
+                                        }
+                                    }
+                                    
+                                    HStack {
+                                        ForEach(pokemon.types!, id: \.self) { type in
+                                            Text(type.capitalized)
+                                                .font(.subheadline)
+                                                .fontWeight(.semibold)
+                                                .foregroundStyle(.black)
+                                                .padding(.horizontal, 13)
+                                                .padding(.vertical, 5)
+                                                .background(Color(type.capitalized))
+                                                .clipShape(.capsule)
+                                            
+                                        }
                                     }
                                 }
+                            }
+                        }
+                    } footer: {
+                        if pokedex.count < 151 {
+                            ContentUnavailableView {
+                                Label("Missing Pokemon", image: .nopokemon)
+                            } description: {
+                                Text("The fetch was interrupted!\nFetch the rest of the Pokemon.")
+                            } actions: {
+                                Button("Fetch Pokemon", systemImage: "antenna.radiowaves.left.and.right") {
+                                    getPokemon()
+                                }
+                                .buttonStyle(.borderedProminent)
                             }
                         }
                     }
