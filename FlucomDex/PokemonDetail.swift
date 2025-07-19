@@ -18,5 +18,5 @@ struct PokemonDetail: View {
 }
 
 #Preview {
-    PokemonDetail()
+    PokemonDetail().environmentObject(PersistenceController.previewPokemon)
 }
