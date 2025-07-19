@@ -78,7 +78,7 @@ struct FetchedPokemon: Decodable {
         speed = decodedStats[5]
         
         // spites
-        var spritesContainer = try container.nestedContainer(keyedBy: CodingKeys.SpriteKeys.self, forKey: .sprites)
+        let spritesContainer = try container.nestedContainer(keyedBy: CodingKeys.SpriteKeys.self, forKey: .sprites)
         
         sprite = try spritesContainer.decode(URL.self, forKey: .sprite)
         shiny = try spritesContainer.decode(URL.self, forKey: .shiny)
