@@ -16,7 +16,10 @@ struct ContentView: View {
         animation: .default)
     private var pokedex: FetchedResults<Pokemon>
     
+    @State private var searchText: String = ""
+
     let fetcher = FetchService()
+    
     
     var body: some View {
         NavigationStack {
@@ -55,6 +58,8 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Pokedex")
+            .searchable(text: $searchText, prompt: "Find a Pokemon")
+            .autocorrectionDisabled()
             .navigationDestination(for: Pokemon.self) { pokemon in
                 Text(pokemon.name ?? "No name")
             }
@@ -68,7 +73,7 @@ struct ContentView: View {
                     }
                 }
             }
-            .border(.green, width: 7)
+//            .border(.green, width: 7)
         }
     }
     
