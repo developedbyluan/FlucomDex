@@ -18,7 +18,7 @@ struct ContentView: View {
     
     @State private var searchText: String = ""
     @State private var filteredByFavorites: Bool = false
-
+    
     let fetcher = FetchService()
     
     private var dynamicPredicate: NSPredicate {
@@ -96,19 +96,16 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                            filteredByFavorites.toggle()
+                        filteredByFavorites.toggle()
                     } label: {
                         Label("Filter by Favorites", systemImage: filteredByFavorites ? "star.fill" : "star")
                     }
                     .tint(.yellow)
                 }
-                ToolbarItem {
-                    Button("Add Item", systemImage: "plus") {
-                        getPokemon()
-                    }
-                }
             }
-//            .border(.green, width: 7)
+        }
+        .task {
+            getPokemon()
         }
     }
     
