@@ -19,7 +19,7 @@ struct ContentView: View {
     let fetcher = FetchService()
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach(pokedex) { pokemon in
                     NavigationLink {
