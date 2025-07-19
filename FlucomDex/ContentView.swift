@@ -124,6 +124,11 @@ struct ContentView: View {
                     pokemon.sprite = fetchedPokemon.sprite
                     pokemon.shiny = fetchedPokemon.shiny
                     
+                    // For Filter by Favorites Testing
+                    if pokemon.id % 2 == 0 {
+                        pokemon.favorite = true
+                    }
+                    
                     try viewContext.save()
                 } catch {
                     print(error)
