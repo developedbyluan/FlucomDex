@@ -10,23 +10,33 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Pokemon.id, ascending: true)],
         animation: .default)
     private var pokedex: FetchedResults<Pokemon>
     
     let fetcher = FetchService()
-
+    
     var body: some View {
         NavigationStack {
             List {
                 ForEach(pokedex) { pokemon in
                     NavigationLink(value: pokemon) {
-                        Text(pokemon.name ?? "No name")
+                        AsyncImage(url: pokemon.sprite) { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                            
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .frame(width: 100, height: 100)
+                        .border(.black, width: 7)
                     }
                 }
             }
+            .navigationTitle("Pokedex")
             .navigationDestination(for: Pokemon.self) { pokemon in
                 Text(pokemon.name ?? "No name")
             }
@@ -40,6 +50,7 @@ struct ContentView: View {
                     }
                 }
             }
+            .border(.green, width: 7)
         }
     }
     
