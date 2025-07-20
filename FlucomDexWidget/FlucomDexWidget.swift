@@ -12,15 +12,15 @@ struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: .now, name: "bulbasaur", types: ["grass", "poison"], sprite: Image(.bulbasaur))
     }
-
+    
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         let entry = SimpleEntry(date: .now, name: "bulbasaur", types: ["grass", "poison"], sprite: Image(.bulbasaur))
         completion(entry)
     }
-
+    
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
-
+        
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
@@ -28,11 +28,11 @@ struct Provider: TimelineProvider {
             let entry = SimpleEntry(date: entryDate, emoji: "😀")
             entries.append(entry)
         }
-
+        
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
-
+    
 }
 
 struct SimpleEntry: TimelineEntry {
@@ -40,11 +40,19 @@ struct SimpleEntry: TimelineEntry {
     let name: String
     let types: [String]
     let sprite: Image
+    
+    static var placeholder: SimpleEntry {
+        SimpleEntry(
+            date: .now,
+            name: "bulbasaur",
+            types: ["grass", "poison"],
+            sprite: Image(.bulbasaur))
+    }
 }
 
 struct FlucomDexWidgetEntryView : View {
     var entry: Provider.Entry
-
+    
     var body: some View {
         VStack {
             entry.sprite
@@ -54,7 +62,7 @@ struct FlucomDexWidgetEntryView : View {
 
 struct FlucomDexWidget: Widget {
     let kind: String = "FlucomDexWidget"
-
+    
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(iOS 17.0, *) {
