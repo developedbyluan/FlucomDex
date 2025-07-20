@@ -63,12 +63,16 @@ struct FlucomDexWidgetEntryView : View {
     
     var body: some View {
         switch widgetSize {
-            case .systemMedium:
-                entry.sprite
-            case .systemLarge:
-                entry.sprite
-            default:
-                entry.sprite
+        case .systemMedium:
+            entry.sprite
+        case .systemLarge:
+            entry.sprite
+        default:
+            entry.sprite
+                .interpolation(.none)
+                .resizable()
+                .scaledToFit()
+                .shadow(color: .black, radius: 6)
         }
     }
 }
