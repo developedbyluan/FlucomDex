@@ -51,11 +51,24 @@
 			);
 			target = 5EACF59B2E2CFFD000C039FC /* FlucomDexWidgetExtension */;
 		};
+		5EACF5B32E2D04E900C039FC /* Exceptions for "FlucomDex" folder in "FlucomDexWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				FlucomDex.xcdatamodeld,
+				Persistence.swift,
+				PokemonExt.swift,
+			);
+			target = 5EACF59B2E2CFFD000C039FC /* FlucomDexWidgetExtension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5E8A80C82E29339400D6F2E3 /* FlucomDex */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5EACF5B32E2D04E900C039FC /* Exceptions for "FlucomDex" folder in "FlucomDexWidgetExtension" target */,
+			);
 			path = FlucomDex;
 			sourceTree = "<group>";
 		};
