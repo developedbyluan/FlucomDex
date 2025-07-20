@@ -75,6 +75,16 @@ struct PokemonDetail: View {
             
         }
         .navigationTitle(pokemon.name!.capitalized)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showShiny.toggle()
+                } label: {
+                    Image(systemName: showShiny ? "wand.and.stars" : "wand.and.stars.inverse")
+                        .tint(showShiny ? .yellow : .primary)
+                }
+            }
+        }
     }
 }
 
