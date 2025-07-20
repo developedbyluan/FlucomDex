@@ -28,4 +28,21 @@ extension Pokemon {
     var typeColor: Color {
         Color(types![0].capitalized)
     }
+    
+    var stats: [Stat] {
+        [
+            Stat(id: 1, name: "HP", value: hp),
+            Stat(id: 2, name: "Attack", value: attack),
+            Stat(id: 3, name: "Defense", value: defense),
+            Stat(id: 4, name: "Special Attack", value: specialAttack),
+            Stat(id: 5, name: "Special Defense", value: specialDefense),
+            Stat(id: 6, name: "Speed", value: speed)
+        ]
+    }
+}
+
+struct Stat: Identifiable {
+    let id: Int
+    let name: String
+    let value: Int16
 }
