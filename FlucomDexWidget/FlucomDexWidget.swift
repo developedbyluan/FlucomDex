@@ -84,7 +84,7 @@ struct FlucomDexWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(iOS 17.0, *) {
                 FlucomDexWidgetEntryView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget)
+                    .containerBackground(Color(entry.types[0].capitalized), for: .widget)
             } else {
                 FlucomDexWidgetEntryView(entry: entry)
                     .padding()
