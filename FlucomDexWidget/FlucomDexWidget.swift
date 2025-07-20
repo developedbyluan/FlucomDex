@@ -105,24 +105,24 @@ struct FlucomDexWidgetEntryView : View {
                 Spacer()
             }
         case .systemLarge:
-            pokemonImage
-//            ZStack {
-//                pokemonImage
-//                
-//                VStack(alignment: .leading) {
-//                    Text(entry.name.capitalized)
-//                        .font(.largeTitle)
-//                        .lineLimit(1)
-//                        .minimumScaleFactor(0.75)
-//                    
-//                    Spacer()
-//                    
-//                    HStack {
-//                        Spacer()
-//                        Text("types")
-//                    }
-//                }
-//            }
+            ZStack {
+                pokemonImage
+                
+                VStack(alignment: .leading) {
+                    Text(entry.name.capitalized)
+                        .font(.largeTitle)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.75)
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Spacer()
+                        
+                        typesView
+                    }
+                }
+            }
         default:
             pokemonImage
         }
