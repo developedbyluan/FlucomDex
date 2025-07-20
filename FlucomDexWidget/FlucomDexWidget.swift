@@ -96,6 +96,7 @@ struct FlucomDexWidgetEntryView : View {
                         }
                     }
                 }
+                .layoutPriority(1)
                 
                 Spacer()
             }
