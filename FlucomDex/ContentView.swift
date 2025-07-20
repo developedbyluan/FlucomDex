@@ -168,6 +168,10 @@ struct ContentView: View {
                     pokemon.spriteURL = fetchedPokemon.spriteURL
                     pokemon.shinyURL = fetchedPokemon.shinyURL
                     
+                    // download images
+                    pokemon.sprite = try await URLSession.shared.data(from: fetchedPokemon.spriteURL).0
+                    pokemon.shiny = try await URLSession.shared.data(from: fetchedPokemon.shinyURL).0
+
                     try viewContext.save()
                 } catch {
                     print(error)
