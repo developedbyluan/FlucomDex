@@ -59,6 +59,14 @@ struct FetchedPokemon: Decodable {
             let type = try typeContainer.decode(String.self, forKey: .name)
             decodedTypes.append(type)
         }
+        
+        // swap order of types in case the first type is normal
+        if decodedTypes.count == 2 && decodedTypes[0] == "normal" {
+            let tempNormalType = decodedTypes[0]
+            decodedTypes[0] = decodedTypes[1]
+            decodedTypes[1] = tempNormalType
+        }
+        
         types = decodedTypes
         
         // stats
