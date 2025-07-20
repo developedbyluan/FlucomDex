@@ -61,18 +61,22 @@ struct FlucomDexWidgetEntryView : View {
     @Environment(\.widgetFamily) var widgetSize
     var entry: Provider.Entry
     
+    var pokemonImage: some View {
+        entry.sprite
+            .interpolation(.none)
+            .resizable()
+            .scaledToFit()
+            .shadow(color: .black, radius: 6)
+    }
+    
     var body: some View {
         switch widgetSize {
         case .systemMedium:
-            entry.sprite
+            pokemonImage
         case .systemLarge:
-            entry.sprite
+            pokemonImage
         default:
-            entry.sprite
-                .interpolation(.none)
-                .resizable()
-                .scaledToFit()
-                .shadow(color: .black, radius: 6)
+            pokemonImage
         }
     }
 }
