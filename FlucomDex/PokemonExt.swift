@@ -39,6 +39,12 @@ extension Pokemon {
             Stat(id: 6, name: "Speed", value: speed)
         ]
     }
+    
+    var highestStat: Stat {
+        stats.max { stat1, stat2 in
+            stat1.value < stat2.value
+        }!
+    }
 }
 
 struct Stat: Identifiable {
