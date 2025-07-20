@@ -58,11 +58,17 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct FlucomDexWidgetEntryView : View {
+    @Environment(\.widgetFamily) var widgetSize
     var entry: Provider.Entry
     
     var body: some View {
-        VStack {
-            entry.sprite
+        switch widgetSize {
+            case .systemMedium:
+                entry.sprite
+            case .systemLarge:
+                entry.sprite
+            default:
+                entry.sprite
         }
     }
 }
