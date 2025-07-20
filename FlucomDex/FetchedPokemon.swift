@@ -59,6 +59,12 @@ struct FetchedPokemon: Decodable {
             let type = try typeContainer.decode(String.self, forKey: .name)
             decodedTypes.append(type)
         }
+        
+        // swap order of types in case the first type is normal
+        if decodedTypes.count == 2 && decodedTypes[0] == "normal" {
+            decodedTypes.swapAt(0, 1)
+        }
+        
         types = decodedTypes
         
         // stats
@@ -78,7 +84,7 @@ struct FetchedPokemon: Decodable {
         speed = decodedStats[5]
         
         // spites
-        var spritesContainer = try container.nestedContainer(keyedBy: CodingKeys.SpriteKeys.self, forKey: .sprites)
+        let spritesContainer = try container.nestedContainer(keyedBy: CodingKeys.SpriteKeys.self, forKey: .sprites)
         
         sprite = try spritesContainer.decode(URL.self, forKey: .sprite)
         shiny = try spritesContainer.decode(URL.self, forKey: .shiny)
