@@ -144,8 +144,8 @@ struct FlucomDexWidget: Widget {
                     .background()
             }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Pokemon")
+        .description("See a random Pokemon.")
     }
 }
 
