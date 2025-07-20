@@ -24,4 +24,8 @@ extension Pokemon {
                 .normalgrasselectricpoisonfairy
         }
     }
+    
+    var typeColor: Color {
+        Color(types![0].capitalized)
+    }
 }
