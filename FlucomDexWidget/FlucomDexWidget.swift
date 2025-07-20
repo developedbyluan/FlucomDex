@@ -37,7 +37,9 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let emoji: String
+    let name: String
+    let types: [String]
+    let sprite: Image
 }
 
 struct FlucomDexWidgetEntryView : View {
