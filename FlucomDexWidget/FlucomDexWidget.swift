@@ -69,6 +69,20 @@ struct FlucomDexWidgetEntryView : View {
             .shadow(color: .black, radius: 6)
     }
     
+    var typesView: some View {
+        ForEach(entry.types, id: \.self) { type in
+            Text(type.capitalized)
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .foregroundStyle(.black)
+                .padding(.horizontal, 13)
+                .padding(.vertical, 5)
+                .background(Color(type.capitalized))
+                .clipShape(.capsule)
+                .shadow(radius: 3)
+        }
+    }
+    
     var body: some View {
         switch widgetSize {
         case .systemMedium:
@@ -83,17 +97,7 @@ struct FlucomDexWidgetEntryView : View {
                         .padding(.vertical, 1)
                     
                     HStack {
-                        ForEach(entry.types, id: \.self) { type in
-                            Text(type.capitalized)
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.black)
-                                .padding(.horizontal, 13)
-                                .padding(.vertical, 5)
-                                .background(Color(type.capitalized))
-                                .clipShape(.capsule)
-                                .shadow(radius: 3)
-                        }
+                        typesView
                     }
                 }
                 .layoutPriority(1)
@@ -102,6 +106,23 @@ struct FlucomDexWidgetEntryView : View {
             }
         case .systemLarge:
             pokemonImage
+//            ZStack {
+//                pokemonImage
+//                
+//                VStack(alignment: .leading) {
+//                    Text(entry.name.capitalized)
+//                        .font(.largeTitle)
+//                        .lineLimit(1)
+//                        .minimumScaleFactor(0.75)
+//                    
+//                    Spacer()
+//                    
+//                    HStack {
+//                        Spacer()
+//                        Text("types")
+//                    }
+//                }
+//            }
         default:
             pokemonImage
         }
