@@ -47,6 +47,14 @@ struct SimpleEntry: TimelineEntry {
             types: ["grass", "poison"],
             sprite: Image(.bulbasaur))
     }
+    
+    static var placeholder2: SimpleEntry {
+        SimpleEntry(
+            date: .now,
+            name: "mew",
+            types: ["psychic"],
+            sprite: Image(.mew))
+    }
 }
 
 struct FlucomDexWidgetEntryView : View {
@@ -82,5 +90,5 @@ struct FlucomDexWidget: Widget {
     FlucomDexWidget()
 } timeline: {
     SimpleEntry.placeholder
-    SimpleEntry.placeholder
+    SimpleEntry.placeholder2
 }
