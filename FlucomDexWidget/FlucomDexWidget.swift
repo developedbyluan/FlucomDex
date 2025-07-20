@@ -98,3 +98,17 @@ struct FlucomDexWidget: Widget {
     SimpleEntry.placeholder
     SimpleEntry.placeholder2
 }
+
+#Preview(as: .systemMedium) {
+    FlucomDexWidget()
+} timeline: {
+    SimpleEntry.placeholder
+    SimpleEntry.placeholder2
+}
+
+#Preview(as: .systemLarge) {
+    FlucomDexWidget()
+} timeline: {
+    SimpleEntry.placeholder
+    SimpleEntry.placeholder2
+}
